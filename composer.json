@@ -8,6 +8,6 @@
     "files": ["src/helpers.php"]
 
   },
-  "bin": ["bin/htmlconstruct"]
-
+  "bin": ["bin/htmlconstruct"],
+  "license": "MIT"
 }
