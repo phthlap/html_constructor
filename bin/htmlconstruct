@@ -1,0 +1,44 @@
+<?php
+
+
+if(!empty($argv)){
+    $script_name =  $argv[1];
+    $script_name($argv);
+}
+
+function setup($arg) {
+
+    $path = $arg[2];
+
+    $template_path = $path . '/vendor/phthlaap/html_constructor/template/';
+
+   // var_dump(file_exists($template_path.'app'));
+
+
+    recurse_copy($template_path, $path);
+
+    $config_content = file_get_contents($path."/app/config.php");
+
+    $config_content = str_replace("{PATH}", $path, $config_content);
+
+    file_put_contents($path."/app/config.php", $config_content);
+//    var_dump($config_content);
+
+
+}
+
+function recurse_copy($src,$dst) {
+    $dir = opendir($src);
+    @mkdir($dst);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    closedir($dir);
+}

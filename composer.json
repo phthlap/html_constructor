@@ -1,0 +1,13 @@
+{
+  "name": "phthlaap/html_constructor",
+  "description": "package under development",
+  "autoload": {
+    "psr-4": {
+      "Phthlaap\\": "src"
+    },
+    "files": ["src/helpers.php"]
+
+  },
+  "bin": ["bin/htmlconstruct"]
+
+}
